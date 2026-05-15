@@ -1,0 +1,1348 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología y Sociedad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Root variables */
+        :root {
+            --primary: #030213;
+            --primary-foreground: #ffffff;
+            --secondary: #f3f4f6;
+            --secondary-foreground: #030213;
+            --muted: #ececf0;
+            --muted-foreground: #717182;
+            --accent: #e9ebef;
+            --accent-foreground: #030213;
+            --border: rgba(0, 0, 0, 0.1);
+            --background: #ffffff;
+            --foreground: #030213;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-900: #0f172a;
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --emerald-50: #f0fdf4;
+            --emerald-100: #dcfce7;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-800: #065f46;
+            --emerald-900: #064e3b;
+            --red-50: #fef2f2;
+            --red-100: #fee2e2;
+            --red-500: #ef4444;
+            --red-600: #dc2626;
+            --red-800: #7f1d1d;
+            --red-900: #7f1d1d;
+        }
+
+        /* Typography */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--slate-900);
+            background-color: var(--slate-50);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h1 {
+            font-size: 3.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        p {
+            line-height: 1.75;
+        }
+
+        /* Utility classes */
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .z-0 { z-index: 0; }
+        .z-10 { z-index: 10; }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .flex-row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .inline-flex {
+            display: inline-flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-start {
+            align-items: flex-start;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-16 { gap: 4rem; }
+
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .space-y-32 > * + * { margin-top: 8rem; }
+
+        .w-full { width: 100%; }
+        .w-8 { width: 2rem; }
+        .w-12 { width: 3rem; }
+        .w-24 { width: 6rem; }
+        .w-28 { width: 7rem; }
+        .w-64 { width: 16rem; }
+        .w-5 { width: 1.25rem; }
+        .w-6 { width: 1.5rem; }
+
+        .h-full { height: 100%; }
+        .h-24 { height: 6rem; }
+        .h-28 { height: 7rem; }
+        .h-64 { height: 16rem; }
+        .h-80 { height: 20rem; }
+        .h-8 { height: 2rem; }
+        .h-12 { height: 3rem; }
+        .h-16 { height: 4rem; }
+        .h-5 { height: 1.25rem; }
+        .h-6 { height: 1.5rem; }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem;
+        }
+
+        .rounded-3xl {
+            border-radius: 1.5rem;
+        }
+
+        .rounded-b-\[3rem\] {
+            border-bottom-left-radius: 3rem;
+            border-bottom-right-radius: 3rem;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+
+        .p-3 { padding: 0.75rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .p-12 { padding: 3rem; }
+
+        .pt-8 { padding-top: 2rem; }
+        .pt-12 { padding-top: 3rem; }
+
+        .pb-24 { padding-bottom: 6rem; }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-32 { margin-bottom: 8rem; }
+
+        .mt-0\.5 { margin-top: 0.125rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        .max-w-lg { max-width: 32rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-4xl { max-width: 56rem; }
+        .max-w-6xl { max-width: 72rem; }
+
+        .flex-1 {
+            flex: 1 1 0%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-sm { font-size: 0.875rem; }
+        .text-base { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-6xl { font-size: 3.75rem; }
+
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .font-extrabold { font-weight: 800; }
+        .font-black { font-weight: 900; }
+
+        .text-white { color: #ffffff; }
+        .text-slate-400 { color: var(--slate-400); }
+        .text-slate-600 { color: var(--slate-600); }
+        .text-slate-700 { color: var(--slate-700); }
+        .text-slate-900 { color: var(--slate-900); }
+        .text-blue-100 { color: var(--blue-100); }
+        .text-blue-400 { color: var(--blue-400); }
+        .text-blue-600 { color: var(--blue-600); }
+        .text-blue-700 { color: var(--blue-700); }
+        .text-emerald-600 { color: var(--emerald-600); }
+        .text-emerald-800 { color: var(--emerald-800); }
+        .text-emerald-900 { color: var(--emerald-900); }
+        .text-red-600 { color: var(--red-600); }
+        .text-red-800 { color: var(--red-800); }
+        .text-red-900 { color: var(--red-900); }
+
+        .bg-slate-50 { background-color: var(--slate-50); }
+        .bg-slate-100 { background-color: var(--slate-100); }
+        .bg-slate-900 { background-color: var(--slate-900); }
+        .bg-slate-200 { background-color: var(--slate-200); }
+        .bg-white { background-color: #ffffff; }
+        .bg-blue-50 { background-color: var(--blue-50); }
+        .bg-blue-100 { background-color: var(--blue-100); }
+        .bg-blue-500 { background-color: var(--blue-500); }
+        .bg-blue-600 { background-color: var(--blue-600); }
+        .bg-blue-700 { background-color: var(--blue-700); }
+        .bg-emerald-50 { background-color: var(--emerald-50); }
+        .bg-emerald-100 { background-color: var(--emerald-100); }
+        .bg-red-50 { background-color: var(--red-50); }
+
+        .border { border: 1px solid var(--border); }
+        .border-2 { border: 2px solid var(--border); }
+        .border-l-4 { border-left: 4px solid; }
+        .border-slate-100 { border-color: var(--slate-100); }
+        .border-slate-200 { border-color: var(--slate-200); }
+        .border-blue-400 { border-color: var(--blue-400); }
+        .border-blue-500 { border-color: var(--blue-500); }
+        .border-emerald-500 { border-color: var(--emerald-500); }
+        .border-red-500 { border-color: var(--red-500); }
+        .border-blue-600 { border-color: var(--blue-600); }
+        .border-black { border-color: #000000; }
+
+        .ring-1 { box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); }
+        .ring-8 { box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.05); }
+        .ring-emerald-500 { box-shadow: 0 0 0 1px var(--emerald-500); }
+        .ring-emerald-50 { box-shadow: 0 0 0 8px var(--emerald-100); }
+
+        .shadow-2xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .opacity-30 { opacity: 0.3; }
+        .opacity-50 { opacity: 0.5; }
+        .opacity-90 { opacity: 0.9; }
+
+        .shrink-0 { flex-shrink: 0; }
+
+        .tracking-tight { letter-spacing: -0.015em; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        .tracking-wider { letter-spacing: 0.05em; }
+
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        ::selection {
+            background-color: var(--blue-200);
+        }
+
+        /* Button styles */
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .hover\:bg-blue-50:hover {
+            background-color: var(--blue-50);
+        }
+
+        .hover\:bg-slate-200:hover {
+            background-color: var(--slate-200);
+        }
+
+        .hover\:border-blue-500:hover {
+            border-color: var(--blue-500);
+        }
+
+        .hover\:bg-slate-800:hover {
+            background-color: #1e293b;
+        }
+
+        .hover\:bg-blue-700:hover {
+            background-color: var(--blue-700);
+        }
+
+        .hover\:scale-\[1\.02\]:hover {
+            transform: scale(1.02);
+        }
+
+        .hover\:-translate-y-1:hover {
+            transform: translateY(-0.25rem);
+        }
+
+        .transition-all {
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transition-transform {
+            transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transition-colors {
+            transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blur-3xl {
+            filter: blur(64px);
+        }
+
+        .-mr-32 { margin-right: -8rem; }
+        .-mt-32 { margin-top: -8rem; }
+        .-ml-32 { margin-left: -8rem; }
+        .-mb-32 { margin-bottom: -8rem; }
+
+        .pointer-events-none {
+            pointer-events: none;
+        }
+
+        .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .md\:text-6xl {
+                font-size: 3.75rem;
+            }
+
+            .md\:text-2xl {
+                font-size: 1.5rem;
+            }
+
+            .md\:text-3xl {
+                font-size: 1.875rem;
+            }
+
+            .md\:flex-row {
+                flex-direction: row;
+            }
+
+            .md\:flex-row-reverse {
+                flex-direction: row-reverse;
+            }
+
+            .md\:h-\[400px\] {
+                height: 400px;
+            }
+
+            .md\:gap-16 {
+                gap: 4rem;
+            }
+
+            .md\:px-8 {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .md\:p-12 {
+                padding: 3rem;
+            }
+        }
+
+        .bg-blue-500\/20 {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .border-blue-400\/30 {
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .shadow-blue-200 {
+            box-shadow: 0 10px 15px -3px rgba(191, 219, 254, 0.5);
+        }
+
+        .shadow-blue-300 {
+            box-shadow: 0 10px 15px -3px rgba(147, 197, 253, 0.5);
+        }
+
+        .bg-emerald-100\/50 {
+            background-color: rgba(209, 250, 229, 0.5);
+        }
+
+        .bg-red-100\/50 {
+            background-color: rgba(254, 226, 226, 0.5);
+        }
+
+        /* Icon styling */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 6rem 1.5rem;
+            overflow: hidden;
+            background-color: var(--slate-900);
+            border-bottom-left-radius: 3rem;
+            border-bottom-right-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        header .bg-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        header .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--slate-900), rgba(15, 23, 42, 0.8), transparent);
+        }
+
+        header .content {
+            position: relative;
+            z-index: 10;
+            max-width: 56rem;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        header .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            background-color: rgba(59, 130, 246, 0.2);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section */
+        .section-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-wrapper {
+                flex-direction: row;
+                gap: 4rem;
+                align-items: center;
+            }
+
+            .section-wrapper.reverse {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .section-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .section-image-box {
+            flex: 1;
+            width: 100%;
+        }
+
+        .section-image {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-image:hover {
+            transform: scale(1.02);
+        }
+
+        .section-image img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .section-image img {
+                height: 400px;
+            }
+        }
+
+        .section-image-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--blue-50);
+            color: var(--blue-700);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: fit-content;
+        }
+
+        .section-label svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.3;
+            border-left: 4px solid var(--blue-600);
+            padding-left: 1rem;
+        }
+
+        .section-text {
+            font-size: 1.125rem;
+            color: var(--slate-600);
+            line-height: 1.625;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            max-width: 48rem;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 1px solid var(--slate-100);
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .quiz-container {
+                padding: 3rem;
+            }
+        }
+
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 16rem;
+            height: 16rem;
+            background-color: var(--blue-50);
+            border-radius: 9999px;
+            filter: blur(64px);
+            margin-right: -8rem;
+            margin-top: -8rem;
+            pointer-events: none;
+        }
+
+        .quiz-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 16rem;
+            height: 16rem;
+            background-color: var(--emerald-50);
+            border-radius: 9999px;
+            filter: blur(64px);
+            margin-left: -8rem;
+            margin-bottom: -8rem;
+            pointer-events: none;
+        }
+
+        .quiz-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .quiz-title {
+                font-size: 1.875rem;
+            }
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quiz-option {
+            text-align: left;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 2px solid var(--slate-200);
+            background-color: #ffffff;
+            color: var(--slate-700);
+            font-weight: 500;
+            font-size: 1.125rem;
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-option:not(:disabled):hover {
+            border-color: var(--blue-500);
+            background-color: var(--blue-50);
+        }
+
+        .quiz-option:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .quiz-option.correct {
+            background-color: var(--emerald-50);
+            border-color: var(--emerald-500);
+            color: var(--emerald-800);
+            box-shadow: 0 0 0 1px var(--emerald-500);
+        }
+
+        .quiz-option.incorrect {
+            background-color: var(--red-50);
+            border-color: var(--red-500);
+            color: var(--red-800);
+        }
+
+        .quiz-option.disabled {
+            background-color: var(--slate-50);
+            border-color: var(--slate-200);
+            color: var(--slate-400);
+            opacity: 0.5;
+        }
+
+        .quiz-feedback {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .quiz-feedback.correct {
+            background-color: rgba(209, 250, 229, 0.5);
+            color: var(--emerald-900);
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: rgba(254, 226, 226, 0.5);
+            color: var(--red-900);
+        }
+
+        .quiz-feedback-icon {
+            width: 2rem;
+            height: 2rem;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .quiz-feedback-icon.correct {
+            color: var(--emerald-600);
+        }
+
+        .quiz-feedback-icon.incorrect {
+            color: var(--red-600);
+        }
+
+        .quiz-feedback-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-feedback-text {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .quiz-next-btn {
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--slate-900);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-next-btn:hover {
+            background-color: #1e293b;
+        }
+
+        /* Start screen */
+        .quiz-start {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .quiz-start-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 6rem;
+            height: 6rem;
+            background-color: var(--blue-100);
+            color: var(--blue-600);
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-start-icon svg {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .quiz-start h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .quiz-start p {
+            font-size: 1.25rem;
+            color: var(--slate-600);
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--blue-600);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2);
+        }
+
+        .quiz-start-btn:hover {
+            background-color: var(--blue-700);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+            transform: translateY(-0.25rem);
+        }
+
+        /* Results screen */
+        .quiz-results {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .quiz-results-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 7rem;
+            height: 7rem;
+            background-color: var(--emerald-100);
+            color: var(--emerald-600);
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 0 8px var(--emerald-100);
+        }
+
+        .quiz-results-icon svg {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .quiz-results h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .quiz-results-score {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: var(--blue-600);
+        }
+
+        .quiz-results-score-total {
+            font-size: 1.875rem;
+            color: var(--slate-400);
+            font-weight: 500;
+        }
+
+        .quiz-results-text {
+            font-size: 1.25rem;
+            color: var(--slate-600);
+            font-weight: 500;
+        }
+
+        .quiz-retry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--slate-100);
+            color: var(--slate-700);
+            font-weight: 600;
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1rem;
+        }
+
+        .quiz-retry-btn:hover {
+            background-color: var(--slate-200);
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="min-h-screen bg-slate-50 font-sans pb-24">
+        <!-- Header -->
+        <header>
+            <div class="bg-image">
+                <img src="https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MXx8fHwxNzc4NTM5MDQ0fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Abstract technology" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="gradient-overlay"></div>
+            <div class="content">
+                <div class="icon-box">
+                    <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.753 2 16.253s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                    Tecnología y Sociedad
+                </h1>
+                <p class="text-lg md:text-2xl text-blue-100 max-w-2xl mx-auto font-light">
+                    Un análisis filosófico e interactivo sobre nuestro vínculo con el mundo digital y su impacto en el futuro humano.
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-6xl mx-auto px-6 lg:px-8 py-20 space-y-32">
+            <!-- Section 1: Tecnología y Tecnocracia -->
+            <section class="section-wrapper">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg class="text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20H7m6-4h.01M3 3h18v18H3z"></path>
+                        </svg>
+                        <span>Capítulo</span>
+                    </div>
+                    <h2 class="section-title">La Definición de Tecnología y el Auge de la Tecnocracia</h2>
+                    <p class="section-text">
+                        Para comprender el mundo actual, es necesario remontarse a la raíz del término tecnología, el cual proviene de los vocablos griegos tekne (oficio) y logos (ciencia). En las últimas décadas, la sociedad se enfrenta a una 'tecnocracia', un sistema donde las naciones se valoran por su éxito económico y técnico, desplazando los valores humanos. Este paradigma ha transformado no solo la economía, sino también nuestra manera de interactuar, privilegiando la eficiencia por encima de la ética y la empatía en nuestras decisiones diarias.
+                    </p>
+                </div>
+                <div class="section-image-box">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MXx8fHwxNzc4NTM5MDQ0fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Abstract technology connections">
+                        <div class="section-image-ring"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Comunicación -->
+            <section class="section-wrapper reverse">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg class="text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Capítulo</span>
+                    </div>
+                    <h2 class="section-title">Comunicación Global frente al Aislamiento Social</h2>
+                    <p class="section-text">
+                        El avance de las telecomunicaciones presenta una paradoja; si bien facilita la organización civil y permite conectar a personas separadas por miles de kilómetros en tiempo real, también existe el riesgo de la "tecnofilia". En este fenómeno, la relación virtual reemplaza el contacto auténtico en los hogares y espacios públicos. Cada vez es más común observar familias o grupos de amigos donde el silencio domina mientras las pantallas acaparan toda la atención, creando islas de aislamiento en medio de la compañía.
+                    </p>
+                </div>
+                <div class="section-image-box">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1622674343958-1cb1ae9f9ce4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjB1c2luZyUyMHBob25lcyUyMHRvZ2V0aGVyJTIwaWdub3JpbmclMjBlYWNoJTIwb3RoZXJ8ZW58MXx8fHwxNzc4NjkyMTk1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="People on their phones ignoring each other">
+                        <div class="section-image-ring"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Transformación Laboral -->
+            <section class="section-wrapper">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg class="text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span>Capítulo</span>
+                    </div>
+                    <h2 class="section-title">Transformación Laboral y el Desafío de la Educación</h2>
+                    <p class="section-text">
+                        La inteligencia artificial y la robótica han mejorado la productividad a niveles sin precedentes, optimizando procesos y resolviendo problemas complejos en segundos. Pero también han provocado el desplazamiento de mano de obra humana en sectores tradicionales. La brecha digital sigue siendo una preocupación crítica para la formación profesional; hoy en día, el analfabetismo tecnológico es una barrera enorme para el desarrollo, exigiendo a los sistemas educativos una adaptación urgente para preparar a las futuras generaciones.
+                    </p>
+                </div>
+                <div class="section-image-box">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1563968743333-044cef800494?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwZmFjdG9yeXxlbnwxfHx8fDE3Nzg2OTIxOTV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Artificial intelligence in factory">
+                        <div class="section-image-ring"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Salud y Ambiente -->
+            <section class="section-wrapper reverse">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg class="text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span>Capítulo</span>
+                    </div>
+                    <h2 class="section-title">Salud, Bienestar y el Impacto Ambiental</h2>
+                    <p class="section-text">
+                        Se identifican patologías modernas vinculadas al abuso técnico, como la fatiga visual, el insomnio provocado por la luz azul y el "pulgar de mensaje". Además de la salud individual, está el enorme costo ecológico: la alta demanda de dispositivos de rápida obsolescencia genera un impacto ambiental severo por residuos electrónicos. Las montañas de basura tecnológica en países en desarrollo son un recordatorio constante de que nuestro confort digital tiene un precio tangible para el planeta.
+                    </p>
+                </div>
+                <div class="section-image-box">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1762542530803-18c4223557dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJvbmljJTIwd2FzdGUlMjBwb2xsdXRpb258ZW58MXx8fHwxNzc4NjkyMTk1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Electronic waste pollution">
+                        <div class="section-image-ring"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz -->
+            <div class="pt-12">
+                <div class="quiz-container">
+                    <div class="quiz-content" id="quiz">
+                        <!-- Quiz content will be rendered here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                q: "¿Cómo ha cambiado la forma de comunicarnos en las reuniones familiares?",
+                options: [
+                    "A) Las personas hablan más cara a cara",
+                    "B) Pasan el tiempo mirando su celular",
+                    "C) No ha tenido impacto",
+                    "D) Ya no existen reuniones"
+                ],
+                correct: 1,
+                expl: "La mediación excesiva de pantallas disminuye las interacciones auténticas y favorece la tecnofilia."
+            },
+            {
+                q: "¿Qué nombre recibe la desigualdad en el acceso a internet y recursos tecnológicos?",
+                options: [
+                    "A) Desconexión total",
+                    "B) Pobreza informativa",
+                    "C) Brecha digital",
+                    "D) Falta de señal"
+                ],
+                correct: 2,
+                expl: "La brecha digital genera desigualdad social y limita el desarrollo en ámbitos educativos y laborales."
+            },
+            {
+                q: "¿Cuál es una ventaja principal de la tecnología en la salud, según el texto original?",
+                options: [
+                    "A) Ya no se necesitan médicos",
+                    "B) Telemedicina y diagnósticos remotos",
+                    "C) Los dispositivos curan solos",
+                    "D) Eliminación de registros"
+                ],
+                correct: 1,
+                expl: "La telemedicina permite conectar médicos y pacientes a pesar de las distancias, mejorando la prevención."
+            },
+            {
+                q: "¿De qué vocablos griegos proviene la palabra 'tecnología' según el texto?",
+                options: [
+                    "A) Bios y Logos",
+                    "B) Tekne y Logos",
+                    "C) Chronos y Tekne",
+                    "D) Sophia y Logos"
+                ],
+                correct: 1,
+                expl: "La palabra tecnología se remonta a la raíz de los vocablos griegos 'tekne' (oficio) y 'logos' (ciencia)."
+            },
+            {
+                q: "¿Qué problema ambiental principal genera la alta demanda y rápida obsolescencia de los dispositivos?",
+                options: [
+                    "A) Calentamiento de los océanos",
+                    "B) Aumento de residuos electrónicos",
+                    "C) Deforestación masiva",
+                    "D) Contaminación acústica"
+                ],
+                correct: 1,
+                expl: "La rápida obsolescencia genera un impacto ambiental severo por la acumulación de residuos electrónicos (basura tecnológica)."
+            }
+        ];
+
+        // Quiz state
+        let quizState = {
+            hasStarted: false,
+            currentQ: 0,
+            score: 0,
+            showFeedback: false,
+            selectedOption: null,
+            isFinished: false
+        };
+
+        // SVG Icons
+        function createCheckCircleIcon() {
+            return `<svg class="quiz-feedback-icon correct" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>`;
+        }
+
+        function createXCircleIcon() {
+            return `<svg class="quiz-feedback-icon incorrect" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+            </svg>`;
+        }
+
+        function createBrainIcon() {
+            return `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5h.01"></path>
+            </svg>`;
+        }
+
+        function createAwardIcon() {
+            return `<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>`;
+        }
+
+        function createChevronIcon() {
+            return `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>`;
+        }
+
+        function createRotateCcwIcon() {
+            return `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>`;
+        }
+
+        // Render quiz
+        function renderQuiz() {
+            const quizEl = document.getElementById('quiz');
+            
+            if (!quizState.hasStarted) {
+                // Start screen
+                quizEl.innerHTML = `
+                    <div class="quiz-start">
+                        <div class="quiz-start-icon">
+                            ${createBrainIcon()}
+                        </div>
+                        <h2>¡Pon a prueba tus conocimientos!</h2>
+                        <p>Repasa lo que has leído en las secciones anteriores y demuestra tu comprensión sobre la tecnología y la sociedad.</p>
+                        <button class="quiz-start-btn" onclick="startQuiz()">
+                            Comenzar Juego ${createChevronIcon()}
+                        </button>
+                    </div>
+                `;
+            } else if (quizState.isFinished) {
+                // Results screen
+                quizEl.innerHTML = `
+                    <div class="quiz-results">
+                        <div class="quiz-results-icon">
+                            ${createAwardIcon()}
+                        </div>
+                        <h2>Juego Terminado</h2>
+                        <div>
+                            <div class="quiz-results-score">${quizState.score}</div>
+                            <div class="quiz-results-score-total">/ ${questions.length}</div>
+                        </div>
+                        <p class="quiz-results-text">
+                            ${quizState.score === questions.length ? "¡Increíble! Entiendes todo perfectamente. 🌟" : "¡Buen trabajo! Sigue explorando. 👍"}
+                        </p>
+                        <button class="quiz-retry-btn" onclick="startQuiz()">
+                            ${createRotateCcwIcon()} Volver a intentar
+                        </button>
+                    </div>
+                `;
+            } else {
+                // Question screen
+                const currentQuestion = questions[quizState.currentQ];
+                let optionsHTML = '';
+                
+                currentQuestion.options.forEach((opt, index) => {
+                    let buttonClass = 'quiz-option';
+                    if (quizState.showFeedback) {
+                        if (index === currentQuestion.correct) {
+                            buttonClass += ' correct';
+                        } else if (index === quizState.selectedOption) {
+                            buttonClass += ' incorrect';
+                        } else {
+                            buttonClass += ' disabled';
+                        }
+                    }
+                    
+                    optionsHTML += `
+                        <button class="${buttonClass}" onclick="handleOptionClick(${index})" ${quizState.showFeedback ? 'disabled' : ''}>
+                            ${opt}
+                        </button>
+                    `;
+                });
+
+                let feedbackHTML = '';
+                if (quizState.showFeedback) {
+                    const isCorrect = quizState.selectedOption === currentQuestion.correct;
+                    feedbackHTML = `
+                        <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? createCheckCircleIcon() : createXCircleIcon()}
+                            <div>
+                                <div class="quiz-feedback-title">${isCorrect ? '¡Correcto!' : 'Incorrecto'}</div>
+                                <div class="quiz-feedback-text">${currentQuestion.expl}</div>
+                                <button class="quiz-next-btn" onclick="nextQuestion()">
+                                    ${quizState.currentQ + 1 < questions.length ? 'Siguiente Pregunta' : 'Ver Resultados'} ${createChevronIcon()}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                quizEl.innerHTML = `
+                    <div class="quiz-content">
+                        <div class="quiz-header">
+                            <span>Pregunta ${quizState.currentQ + 1} de ${questions.length}</span>
+                            <span class="text-blue-600">Puntuación: ${quizState.score}</span>
+                        </div>
+                        <div class="quiz-title">${currentQuestion.q}</div>
+                        <div class="quiz-options">
+                            ${optionsHTML}
+                        </div>
+                        ${feedbackHTML}
+                    </div>
+                `;
+            }
+        }
+
+        function startQuiz() {
+            quizState.hasStarted = true;
+            quizState.currentQ = 0;
+            quizState.score = 0;
+            quizState.showFeedback = false;
+            quizState.selectedOption = null;
+            quizState.isFinished = false;
+            renderQuiz();
+        }
+
+        function handleOptionClick(index) {
+            if (quizState.showFeedback) return;
+            
+            quizState.selectedOption = index;
+            quizState.showFeedback = true;
+            
+            if (index === questions[quizState.currentQ].correct) {
+                quizState.score++;
+            }
+            
+            renderQuiz();
+        }
+
+        function nextQuestion() {
+            if (quizState.currentQ + 1 < questions.length) {
+                quizState.currentQ++;
+                quizState.showFeedback = false;
+                quizState.selectedOption = null;
+            } else {
+                quizState.isFinished = true;
+            }
+            renderQuiz();
+        }
+
+        // Initial render
+        renderQuiz();
+    </script>
+</body>
+</html>
+  
